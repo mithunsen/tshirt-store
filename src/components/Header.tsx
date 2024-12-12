@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../store/slices/cartSlice";
 import { filterProducts } from "../store/slices/productsSlice";
 import { AppDispatch, RootState } from "../store/store";
+import SearchBar from "./SearchBar";
 
 const Header: React.FC = () => {
   const cartCount = useSelector((state: RootState) => state.cart.items.length);
-  const [searchTxt, setSearchTxt] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleSearch = () => {
+  const handleSearch = (searchTxt: string) => {
+    console.log("searchTxt", searchTxt);
     dispatch(filterProducts({ search: searchTxt }));
   };
 
@@ -19,22 +20,8 @@ const Header: React.FC = () => {
       <h1 className="text-4xl font-bold tracking-tight text-gray-900">
         T-Shirt Store
       </h1>
-      <div className="flex justify-center w-1/2">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          className="block w-full rounded-md bg-white px-2 py-2 mr-4 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
-          onChange={(e) => setSearchTxt(e.target.value)}
-        />
-        <button
-          onClick={handleSearch}
-          className="text-sm px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700"
-        >
-          Search
-        </button>
-      </div>
 
+      <SearchBar onSearch={handleSearch} />
       <div className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-4">
           {cartCount > 0 && (
