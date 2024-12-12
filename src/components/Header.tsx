@@ -5,7 +5,7 @@ import { clearCart } from "../store/slices/cartSlice";
 import { filterProducts } from "../store/slices/productsSlice";
 import { AppDispatch, RootState } from "../store/store";
 
-const Header: React.FC = ({}) => {
+const Header: React.FC = () => {
   const cartCount = useSelector((state: RootState) => state.cart.items.length);
   const [searchTxt, setSearchTxt] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
