@@ -48,7 +48,10 @@ const productsSlice = createSlice({
           );
 
         const matchesSearch =
-          !searchText || product.name.toLowerCase().includes(searchText);
+          !searchText ||
+          product.name.toLowerCase().includes(searchText) ||
+          product.type.toLowerCase().includes(searchText) ||
+          product.color.toLowerCase().includes(searchText);
 
         return (
           matchesColor &&
