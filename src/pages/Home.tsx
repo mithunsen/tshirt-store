@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Filters from "../components/Filters";
+import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import { setProducts } from "../store/slices/productsSlice";
 import { AppDispatch, RootState } from "../store/store";
@@ -32,12 +33,7 @@ const Home: React.FC = () => {
 
   return (
     <main className="mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 mt-4">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-          T-Shirt Store
-        </h1>
-        {/* <Header /> */}
-      </div>
+      <Header />
       <section aria-labelledby="products-heading" className="pb-24 pt-6">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           {isProductLoaded && products.length > 0 && <Filters />}

@@ -112,21 +112,27 @@ const Filters: React.FC = () => {
                         onChange={(e) => {
                           if (e.target.checked) {
                             setFilter((prev) => {
+                              const existingFilters = prev[
+                                section.id as keyof IFilters
+                              ] as string[];
                               return {
                                 ...prev,
                                 [section.id]: [
-                                  ...prev[section.id as keyof IFilters],
+                                  ...existingFilters,
                                   e.target.value,
                                 ],
                               };
                             });
                           } else {
                             setFilter((prev) => {
+                              const existingFilters = filter[
+                                section.id as keyof IFilters
+                              ] as string[];
                               return {
                                 ...prev,
-                                [section.id]: filter[
-                                  section.id as keyof IFilters
-                                ].filter((item) => item !== e.target.value),
+                                [section.id]: existingFilters.filter(
+                                  (item) => item !== e.target.value
+                                ),
                               };
                             });
                           }

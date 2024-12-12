@@ -26,8 +26,9 @@ export enum IType {
 }
 
 export interface IFilters {
-  gender: string[];
-  color: string[];
-  price: string[];
-  type: string[];
+  gender?: string[];
+  color?: string[];
+  price?: string[];
+  type?: string[];
+  search?: string;
 }
